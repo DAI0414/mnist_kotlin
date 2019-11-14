@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity() {
                 var result = classifier!!.classify(image)
 
                 indexText.text = result.first.toString()
-                resultText.text = result.second.toString()
+                resultText.text = "%.3f".format(result.second * 100.0) + "%"
             }
         }
 
         clearButton.setOnClickListener {
             fingerPaint.clear()
             indexText.text = ""
-            resultText.text = ""
+            resultText.text = "%"
         }
     }
 }

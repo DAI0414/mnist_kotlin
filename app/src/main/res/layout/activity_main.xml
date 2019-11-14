@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:layout_marginBottom="30dp"
-        android:text=""/>
+        android:text="%"/>
 
     <com.nex3z.fingerpaintview.FingerPaintView
         android:id="@+id/fingerPaint"

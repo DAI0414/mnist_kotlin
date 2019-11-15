@@ -14,17 +14,18 @@ class Classifier{
 
     private val modelName = "mnist.tflite"
 
-    val batchSize = 1
     val imgHeight = 28
     val imgWidth = 28
-    val numChannel = 1
-    val numClasses = 10
+
+    private val batchSize = 1
+    private val numChannel = 1
+    private val numClasses = 10
 
     private val options = Interpreter.Options()
     private val interpreter: Interpreter
     private val imageData: ByteBuffer
     private val imagePixels = IntArray(imgHeight * imgWidth)
-    private val result = Array(1){FloatArray(numClasses)}
+    private val results = Array(1){FloatArray(numClasses)}
 
     constructor(activity: Activity){
         interpreter = Interpreter(loadModelFile(activity), options)
@@ -43,14 +44,14 @@ class Classifier{
 
     fun classify(bitmap: Bitmap): Pair<Int, Float>{
         convertBitmapToByteBuffer(bitmap)
-        interpreter.run(imageData, result)
+        interpreter.run(imageData, results)
 
         var maxIndex = -1
         var max = -1.0f
         for(index in 0.until(numClasses)){
-            if(max < result[0][index]){
+            if(max < results[0][index]){
                 maxIndex = index
-                max = result[0][index]
+                max = results[0][index]
             }
         }
 

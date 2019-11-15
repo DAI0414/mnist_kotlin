@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         clearButton.setOnClickListener {
             fingerPaint.clear()
             indexText.text = ""
-            resultText.text = "%"
+            resultText.text = "0%"
         }
     }
 }
